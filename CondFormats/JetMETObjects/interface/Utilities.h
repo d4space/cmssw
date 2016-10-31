@@ -90,7 +90,10 @@ namespace
               }
           }
         else
+	{
           currentToken += c;
+    edm::LogInfo ("getTokens")<<"currentToken:"<<currentToken;
+	}
       }
     if (!currentToken.empty()) tokens.push_back(currentToken); // flush end
     return tokens;

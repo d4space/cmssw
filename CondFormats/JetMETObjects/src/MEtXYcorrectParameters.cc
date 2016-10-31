@@ -22,7 +22,7 @@ MEtXYcorrectParameters::Definitions::Definitions(const std::vector<std::string>&
   for(unsigned i=0;i<fBinVar.size();i++)
     mBinVar.push_back(fBinVar[i]);
   for(unsigned i=0;i<fParVar.size();i++)
-    mParVar.push_back(fParVar[i]);
+    mParVar.push_back(getUnsigned(fParVar[i]));
   mFormula    = fFormula;
 }
 //------------------------------------------------------------------------
@@ -38,11 +38,11 @@ MEtXYcorrectParameters::Definitions::Definitions(const std::string& fLine)
     if (tokens.size() < 6) 
     {
       std::stringstream sserr;
-      sserr<<"(line "<<fLine<<"): Great than or equal to 6 expected tokens:"<<tokens.size();
+      sserr<<"(line "<<fLine<<"): Great than or equal to 6 expected but the number of tokens:"<<tokens.size();
       handleError("MEtXYcorrectParameters::Definitions",sserr.str());
     }
     // No. of Bin Variable
-    LogDebug ("default")<<"Definitions===========";
+    edm::LogInfo ("default")<<"Definitions===========";
     ptclType = getSigned(tokens[0]);
     unsigned nBinVar = getUnsigned(tokens[1]);
     unsigned nParVar = getUnsigned(tokens[nBinVar+2]);
@@ -52,7 +52,7 @@ MEtXYcorrectParameters::Definitions::Definitions(const std::string& fLine)
     }
     for(unsigned i=0;i<nParVar;i++)
     {
-      mParVar.push_back(tokens[nBinVar+3+i]);
+      mParVar.push_back(getUnsigned(tokens[nBinVar+3+i]));
     }
     mFormula = tokens[nParVar+nBinVar+3];
     if (tokens.size() != nParVar+nBinVar+4 ) 

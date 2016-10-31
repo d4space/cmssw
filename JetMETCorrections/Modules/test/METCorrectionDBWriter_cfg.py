@@ -20,7 +20,8 @@ process.MessageLogger = cms.Service("MessageLogger",
 process.load('CondCore.CondDB.CondDB_cfi') 
 #process.load('CondCore.DBCommon.CondDBCommon_cfi') 
 #process.CondDB.connect = 'sqlite_file:Spring16_V0_DATA_MEtXY.db' 
-process.CondDB.connect = 'sqlite_file:Spring16_V0_MC_MEtXY.db' 
+process.CondDB.connect = 'sqlite_file:Summer16_V0_MC_MEtXY.db' 
+#process.CondDB.connect = 'sqlite_file:Spring16_V0_MC_MEtXY.db' 
 #process.CondDBCommon.connect = 'sqlite_file:MET15V0.db' 
 process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(1)) 
 process.source = cms.Source('EmptySource') 
@@ -32,7 +33,7 @@ process.PoolDBOutputService = cms.Service('PoolDBOutputService',
          #record = cms.string('MEtXYcorrectRecord'), not working 
          record = cms.string('PfType1Met'), 
          #tag    = cms.string('MEtXYcorrectParametersCollection_Spring16_V0_DATA_PfType1Met'), 
-         tag    = cms.string('MEtXYcorrectParametersCollection_Spring16_V0_MC_PfType1Met'), 
+         tag    = cms.string('MEtXYcorrectParametersCollection_Summer16_V0_MC_PfType1Met'), 
          label  = cms.string('PfType1Met') 
       )
    ) 
@@ -40,7 +41,7 @@ process.PoolDBOutputService = cms.Service('PoolDBOutputService',
 
 process.dbWriterXYshift = cms.EDAnalyzer('METCorrectorDBWriter', 
    #era    = cms.untracked.string('Spring16_V0_DATA_MEtXY'), 
-   era    = cms.untracked.string('Spring16_V0_MC_MEtXY'), 
+   era    = cms.untracked.string('Summer16_V0_MC_MEtXY'), 
    algo   = cms.untracked.string('PfType1Met'), 
    path   = cms.untracked.string('CondFormats/JetMETObjects/data/')
 ) 
